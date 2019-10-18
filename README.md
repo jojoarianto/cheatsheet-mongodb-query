@@ -4,7 +4,7 @@ Collection of my queries on mongodb
 ## Tools
 tools yang saya gunakan disini adalah "NoSQLBooster for mongodb"
 
-### Softdelete
+### Softdelete Voucher (Reset Voucher)
 Sebelum menghapus data, pastikan kamu benar-benar paham data seperti apa yang ingin kamu hapus (softdelete). untuk lebih mudah dipahami saya berikan contoh sebagai berikut
 
 Goal : Saya ingin menghapus data voucher where event_id=XXXX
@@ -37,5 +37,19 @@ WriteResult({ "nMatched" : 2500, "nUpserted" : 0, "nModified" : 2500 })
 
 nice, disini dapat kita simpulkan proses update data (softdelete) telah berhasis dan data yang berubah sesuai dengan jumlah yang kita inginkan.
 
+
+### Softdelete User 
+```bash
+db.users.update(
+    {event_id: "XXXXX"},
+    {$set: {deleted_at: new ISODate("2019-01-11T03:34:54Z") }},
+    {multi: true}
+);
+```
+
+output
+```bash
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+```
 ---
 Thanks!
