@@ -5,6 +5,7 @@ Collection of my queries on mongodb
 
 - [Update key_answer by test_id and it's number](query_1.md)
 - [Add user on spesific database on mongodb](add_user.md)
+- [Update user password on spesific event_id](update.md)
 
 ## Tools
 
@@ -57,5 +58,24 @@ output
 ```bash
 WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
 ```
+
+### Update user password all peserta on spesific event_id
+```bash
+// query for update password
+// event id : 6007bda65c9f0b3a9xxxxxxxx
+// password hash of "1234"
+
+db.users.update(
+    {event_id: '6007bda65c9f0b3a9xxxxxxxx'},
+    {$set:{"password" : "$2y$10$23vOOffjKIM/h6PjLw6DtedzncHtH/cO25DwAav3N6Vqy0IPQJ/fq"}}, 
+    { multi: true, upsert: false}
+)
+```
+
+output
+```
+WriteResult({ "nMatched" : 560, "nUpserted" : 0, "nModified" : 560 })
+``
+
 ---
 Thanks!
