@@ -77,5 +77,17 @@ output
 WriteResult({ "nMatched" : 560, "nUpserted" : 0, "nModified" : 560 })
 ``
 
+### Remove user spesific event
+```
+db.users.remove(
+    {event_id: "6007bda65c9f0b3axxxxxxx", role_id: "5a1cdae9043f6d1xxxxxxx"},
+    {justOne: false}
+);
+```
+
+output
+```
+WriteResult({ "nRemoved" : 565 })
+```
 ---
 Thanks!
